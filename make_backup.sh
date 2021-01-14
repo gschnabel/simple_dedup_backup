@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ ! "$#" -eq 2 ]; then
+    >&2 echo "ERROR: Must provide two arguments: [source_path] [dest_path]"
+    exit 1
+fi
+
 source_path=$1
 dest_path=$2
 
@@ -11,6 +16,7 @@ dest_path2="$dest_path/$dest_dir"
 # checks of input
 if [ ! -d "$source_path" ]; then
     >&2 echo "Source directory does not exist. [$source_path]"
+    exit 1
 fi
 
 if [ -d "$dest_path2" ]; then
